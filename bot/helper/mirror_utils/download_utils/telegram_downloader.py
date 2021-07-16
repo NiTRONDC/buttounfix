@@ -46,7 +46,7 @@ class TelegramDownloadHelper(DownloadHelper):
 
     def __onDownloadProgress(self, current, total):
         if self.__is_cancelled:
-            self.__onDownloadError('Cancelled by user!')
+            self.__onDownloadError('Download Cancelled By User 🥺❗️')
             self._bot.stop_transmission()
             return
         with self.__resource_lock:
@@ -79,7 +79,7 @@ class TelegramDownloadHelper(DownloadHelper):
             self.__onDownloadComplete()
         else:
             if not self.__is_cancelled:
-                self.__onDownloadError('Internal error occurred')
+                self.__onDownloadError('Internal Error Occurred 🥵')
 
     def add_download(self, message, path, filename):
         _message = self._bot.get_messages(message.chat.id, message.message_id)
@@ -110,16 +110,16 @@ class TelegramDownloadHelper(DownloadHelper):
                         gd = GoogleDriveHelper()
                         smsg, button = gd.drive_list(name)
                     if smsg:
-                        sendMarkup("File/Folder is already available in Drive.\nHere are the search results:", self.__listener.bot, self.__listener.update, button)
+                        sendMarkup("This File/Folder already available in G-Drive 😡\nHere are the search results 🥶", self.__listener.bot, self.__listener.update, button)
                         return
                 sendStatusMessage(self.__listener.update, self.__listener.bot)
                 self.__onDownloadStart(name, media.file_size, media.file_id)
                 LOGGER.info(f'Downloading Telegram file with id: {media.file_id}')
                 threading.Thread(target=self.__download, args=(_message, path)).start()
             else:
-                self.__onDownloadError('File already being downloaded!')
+                self.__onDownloadError('File already being downloaded 🤨')
         else:
-            self.__onDownloadError('No document in the replied message')
+            self.__onDownloadError('No document in the replied message 🤭')
 
     def cancel_download(self):
         LOGGER.info(f'Cancelling download on user request: {self.gid}')
