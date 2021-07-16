@@ -175,7 +175,7 @@ class MegaDownloadHelper:
                 gd = GoogleDriveHelper()
                 smsg, button = gd.drive_list(mname)
             if smsg:
-                msg1 = "This File/Folde already available in G-Drive 😡\nHere are the search results 🥶"
+                msg1 = "This File/Folder already available in G-Drive 😡\nHere are the search results 🥶"
                 sendMarkup(msg1, listener.bot, listener.update, button)
                 return
         if MEGA_LIMIT is not None or TAR_UNZIP_LIMIT is not None:
